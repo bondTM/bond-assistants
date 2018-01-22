@@ -1,5 +1,8 @@
 package chtbt;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
 
 import javax.ws.rs.Consumes;
@@ -11,6 +14,10 @@ import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import model.SebastienResponseModel;
+import service.SutechanService;
+import util.IOConverter;
+
 @Path("/assistant")
 public class MainController {
 
@@ -18,38 +25,28 @@ public class MainController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public SutechanService sutechan(JsonNode param) {
-//    public void sutechan(JsonNode param) {
+    public SebastienResponseModel sutechan(JsonNode param) {
 
-//		param.keySet().forEach(k ->{
-//			System.out.println(k);
-//		});
+		Map<String, String> args = new HashMap<String, String>();
+		SebastienResponseModel srm = new SebastienResponseModel();
 
-//		param.fieldNames().forEachRemaining(p->{
-//			System.out.println(p);
-//		});
+		//入力値を出力用Modelへ
+		IOConverter ioc = new IOConverter();
+		srm = ioc.SebastienInit(param);
 
-		SutechanService ss = new SutechanService(param);
-		ss.greeting();
+		//argsの中身をMapに格納
+		Iterator<Map.Entry<String, JsonNode>> argsWk = param.get("args").fields();
+		argsWk.forEachRemaining(arg ->{
+				args.put(arg.getKey(), arg.getValue().asText());
+		});
 
-//		Params pm = new Params();
-//		pm.message = ss.params.message;
-//		pm.status = ss.params.status;
-//		pm.talkend = ss.params.talkend;
-//		Response res = new Response();
-//		res.bot_id = ss.bot_id;
-//		res.error_code = ss.error_code;
-//		res.params = pm;
-//		res.status = ss.status;
-//		res.user_id = ss.user_id;
+		//セリフ編集
+		SutechanService ss = new SutechanService();
 
-//		Map<String, String> a = new HashMap<String, String>();
-//		a.put("a", "a");
-//
-//		List<String> b = Arrays.asList("a", "b");
-//		String c = "abc";
+		//出力のparamsを編集
+		srm.setParams(ioc.SebastienSetParams(ss.start(args)));
 
-		return ss;
+		return srm;
     }
 
 

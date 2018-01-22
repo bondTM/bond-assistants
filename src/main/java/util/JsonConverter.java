@@ -1,30 +1,30 @@
 package util;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.lang.annotation.Annotation;
-
-import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.ext.MessageBodyWriter;
-import javax.ws.rs.ext.Provider;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import chtbt.SutechanService;
-
-@Provider
+//import java.io.IOException;
+//import java.io.OutputStream;
+//import java.io.PrintWriter;
+//import java.lang.annotation.Annotation;
+//
+//import javax.ws.rs.Produces;
+//import javax.ws.rs.WebApplicationException;
+//import javax.ws.rs.core.MediaType;
+//import javax.ws.rs.core.MultivaluedMap;
+//import javax.ws.rs.ext.MessageBodyWriter;
+//import javax.ws.rs.ext.Provider;
+//
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//
+//import model.SebastienResponseModel;
+//
+//@Provider
 //@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+//@Produces(MediaType.APPLICATION_JSON)
 public class JsonConverter
 //implements MessageBodyReader<JsonNode>
+{
+//implements MessageBodyWriter<SebastienResponseModel> {
 
-implements MessageBodyWriter<SutechanService> {
-
-	private static ObjectMapper mapper = new ObjectMapper();
+//	private static ObjectMapper mapper = new ObjectMapper();
 
 
 
@@ -136,45 +136,45 @@ implements MessageBodyWriter<SutechanService> {
 //
 //	}
 
-	@Override
-	public boolean isWriteable(Class<?> type, java.lang.reflect.Type genericType, Annotation[] annotations,
-			MediaType mediaType) {
-		// TODO 自動生成されたメソッド・スタブ
-		return type == SutechanService.class;
-	}
-
-
-	@Override
-	public long getSize(SutechanService t, Class<?> type, java.lang.reflect.Type genericType, Annotation[] annotations,
-			MediaType mediaType) {
-		// TODO 自動生成されたメソッド・スタブ
-		return -1;
-	}
-
-
-	@Override
-	public void writeTo(SutechanService t, Class<?> type, java.lang.reflect.Type genericType, Annotation[] annotations,
-			MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
-			throws IOException, WebApplicationException {
-		// TODO 自動生成されたメソッド・スタブ
-//	ResponseBodyModel rtn = new ResponseBodyModel();
-//	rtn.setBot_id(t.getBot_id());
-//	rtn.setUser_id(t.getUser_id());
-//	rtn.setError_code(t.getError_code());
-//	rtn.setStatus(t.getStatus());
-//	rtn.setParams(t.getParams());
+//	@Override
+//	public boolean isWriteable(Class<?> type, java.lang.reflect.Type genericType, Annotation[] annotations,
+//			MediaType mediaType) {
+//		// TODO 自動生成されたメソッド・スタブ
+//		return type == SebastienResponseModel.class;
+//	}
 //
-//	List<String> c = Arrays.asList("a", "b", "c");
-//	mapper.writeValueAsString(c);
 //
-//	Map<String, String> a = new HashMap<>();
-//	a.put("a", "b");
-		String json = mapper.writeValueAsString(t);
-		try(PrintWriter out = new PrintWriter(entityStream)){
-			out.print(json);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@Override
+//	public long getSize(SebastienResponseModel t, Class<?> type, java.lang.reflect.Type genericType, Annotation[] annotations,
+//			MediaType mediaType) {
+//		// TODO 自動生成されたメソッド・スタブ
+//		return -1;
+//	}
+//
+//
+//	@Override
+//	public void writeTo(SebastienResponseModel t, Class<?> type, java.lang.reflect.Type genericType, Annotation[] annotations,
+//			MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
+//			throws IOException, WebApplicationException {
+//		// TODO 自動生成されたメソッド・スタブ
+////	ResponseBodyModel rtn = new ResponseBodyModel();
+////	rtn.setBot_id(t.getBot_id());
+////	rtn.setUser_id(t.getUser_id());
+////	rtn.setError_code(t.getError_code());
+////	rtn.setStatus(t.getStatus());
+////	rtn.setParams(t.getParams());
+////
+////	List<String> c = Arrays.asList("a", "b", "c");
+////	mapper.writeValueAsString(c);
+////
+////	Map<String, String> a = new HashMap<>();
+////	a.put("a", "b");
+//		String json = mapper.writeValueAsString(t);
+//		try(PrintWriter out = new PrintWriter(entityStream)){
+//			out.print(json);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
 
