@@ -1,6 +1,7 @@
 package service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,6 +30,9 @@ public class SutechanService {
 		case "goodbye":
 			goodbye();
 			break;
+		case "time":
+			time(slot);
+			break;
 		default :
 			break;
 		}
@@ -40,7 +44,7 @@ public class SutechanService {
 	private void greeting(){
 
 		Random rnd = new Random();
-		LocalDateTime ldt = LocalDateTime.now();
+		LocalDateTime ldt = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
 
 		rtn.put("status", "true");
 		rtn.put("talkend", "false");
@@ -103,6 +107,23 @@ public class SutechanService {
 		rtn.put("status", "true");
 		rtn.put("talkend", "true");
 		rtn.put("message", "鋼のメンタルアシスタント、すてちゃんでした。またね。");
+	}
+
+	private void time(Map<String, String> slot){
+
+		rtn.put("status", "true");
+		rtn.put("talkend", "false");
+
+		if(slot.get("utterance").equals("今何時")){
+			rtn.put("message", "そおね、だいたいねええ");
+			return;
+		}
+
+		LocalDateTime ldt = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
+		rtn.put("message", "ただいまの時刻は"+ ldt.getHour() + "時" +
+							ldt.getMinute() + "分" +
+							ldt.getSecond() + "秒" +
+							ldt.getNano() + "です");
 	}
 
 }

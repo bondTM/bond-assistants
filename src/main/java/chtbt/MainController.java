@@ -40,10 +40,8 @@ public class MainController {
 				args.put(arg.getKey(), arg.getValue().asText());
 		});
 
-		//セリフ編集
+		//セリフ編集＆出力のparamsを編集
 		SutechanService ss = new SutechanService();
-
-		//出力のparamsを編集
 		srm.setParams(ioc.SebastienSetParams(ss.start(args)));
 
 		return srm;
@@ -58,22 +56,6 @@ public class MainController {
         return "<b>Hello, World!</b>" + new Random().nextLong();
     }
 
-
-	static public class Response{
-	public String error_code;
-	public String status;
-	public String bot_id;
-	public String user_id;
-	public Params params;
-
-};
-
-static public class Params{
-	public String status;
-	public String talkend;
-	public String message;
-
-};
 
 
 
