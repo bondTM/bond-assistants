@@ -8,5 +8,43 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+<!--
+  <servlet>
+    <servlet-name>javax.ws.rs.core.Application</servlet-name>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>javax.ws.rs.core.Application</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+        <filter-name>BondWebform</filter-name>
+        <filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>chtbt.JerseyInit</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.servlet.filter.contextPath</param-name>
+            <param-value>api</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.server.mvc.templateBasePath.jsp</param-name>
+            <param-value>/WEB-INF</param-value>
+        </init-param>
+         <init-param>
+            <param-name>compilerSourceVM</param-name>
+            <param-value>1.8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>compilerTargetVM</param-name>
+            <param-value>1.8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>BondWebform</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+     -->
 
 </web-app>

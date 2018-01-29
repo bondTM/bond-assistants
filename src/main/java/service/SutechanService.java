@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import daos.SutechanDatastore;
+
 public class SutechanService {
 
 	private Map<String, String> rtn = new HashMap<String, String>();
@@ -19,7 +21,7 @@ public class SutechanService {
 		switch(slot.get("intent")){
 
 		case "greeting":
-			greeting();
+			greeting(slot);
 			break;
 		case "sex":
 			sex(slot);
@@ -33,6 +35,15 @@ public class SutechanService {
 		case "time":
 			time(slot);
 			break;
+		case "greetingTest":
+			greetingTest(slot);
+			break;
+		case "lines":
+			lines(slot);
+			break;
+		case "fuckYou":
+			fuckYou();
+			break;
 		default :
 			break;
 		}
@@ -41,10 +52,29 @@ public class SutechanService {
 	}
 
 
-	private void greeting(){
+
+	private void greeting(Map<String, String> slot){
 
 		Random rnd = new Random();
 		LocalDateTime ldt = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
+
+		if(slot.containsKey("period")){
+			if(slot.get("period").equals("朝")){
+				ldt = LocalDateTime.of(0, 1, 1, 7, 0);
+			}
+			else if(slot.get("period").equals("昼")){
+				ldt = LocalDateTime.of(0, 1, 1, 12, 0);
+			}
+			else if(slot.get("period").equals("夕方")){
+				ldt = LocalDateTime.of(0, 1, 1, 16, 0);
+			}
+			else if(slot.get("period").equals("夜")){
+				ldt = LocalDateTime.of(0, 1, 1, 19, 0);
+			}
+			else if(slot.get("period").equals("深夜")){
+				ldt = LocalDateTime.of(0, 1, 1, 23, 0);
+			}
+		}
 
 		rtn.put("status", "true");
 		rtn.put("talkend", "false");
@@ -115,7 +145,7 @@ public class SutechanService {
 		rtn.put("talkend", "false");
 
 		if(slot.get("utterance").equals("今何時")){
-			rtn.put("message", "そおね、だいたいねええ");
+			rtn.put("message", "そおねだいたいねー");
 			return;
 		}
 
@@ -123,7 +153,29 @@ public class SutechanService {
 		rtn.put("message", "ただいまの時刻は"+ ldt.getHour() + "時" +
 							ldt.getMinute() + "分" +
 							ldt.getSecond() + "秒" +
-							ldt.getNano() + "です");
+							String.valueOf(ldt.getNano()) + "です");
+	}
+
+
+	private void greetingTest(Map<String, String> slot) {
+		// TODO 自動生成されたメソッド・スタブ
+		slot.put("intent", "greeting");
+		start(slot);
+	}
+
+	private void lines(Map<String, String> slot){
+		SutechanDatastore sd = new SutechanDatastore();
+
+		rtn.put("status", "true");
+		rtn.put("talkend", "false");
+		rtn.put("message", sd.listTasks());
+//		s.addTask("あいうえお");
+	}
+
+	private void fuckYou(){
+		rtn.put("status", "true");
+		rtn.put("talkend", "false");
+		rtn.put("message", "ふぁっきゅー！ふぁっきゅふぁっきゅーーー！");
 	}
 
 }

@@ -5,4 +5,12 @@
   <sessions-enabled>false</sessions-enabled>
   <runtime>java8</runtime>
 
+  <automatic-scaling>
+  	<min-idle-instances>automatic</min-idle-instances>
+  	<max-idle-instances>1</max-idle-instances>
+  	<min-pending-latency>3000ms</min-pending-latency>
+  	<max-pending-latency>automatic</max-pending-latency>
+
+  </automatic-scaling>
+
 </appengine-web-app>

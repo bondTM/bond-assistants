@@ -8,7 +8,8 @@ import org.glassfish.jersey.server.ServerProperties;
 @ApplicationPath("/api")
 public class JerseyInit extends ResourceConfig {
 	public JerseyInit() {
-        packages("controller");
+        packages("chtbt");
         property(ServerProperties.PROVIDER_SCANNING_RECURSIVE, false);
     }
 }
+
