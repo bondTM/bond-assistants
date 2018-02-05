@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import daos.SutechanDatastore;
 import model.SebastienResponseModel;
+import service.GohoLoliService;
 import service.SutechanService;
 import util.IOConverter;
 
@@ -76,7 +77,7 @@ public class MainController {
 		return srm;
     }
 
-	@Path("/man")
+	@Path("/gohololi")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -89,6 +90,7 @@ public class MainController {
 		IOConverter ioc = new IOConverter();
 		srm = ioc.SebastienInit(param);
 
+
 		//argsの中身をMapに格納
 		Iterator<Map.Entry<String, JsonNode>> argsWk = param.get("args").fields();
 		argsWk.forEachRemaining(arg ->{
@@ -96,9 +98,8 @@ public class MainController {
 		});
 
 		//セリフ編集＆出力のparamsを編集
-		srm.getParams().setStatus("true");
-		srm.getParams().setTalkend("true");
-		srm.getParams().setMessage("それではまた");
+		GohoLoliService gs = new GohoLoliService();
+		srm.setParams(ioc.SebastienSetParams(gs.start(args)));
 
 		return srm;
     }

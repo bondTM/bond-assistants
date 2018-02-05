@@ -13,9 +13,7 @@ import com.google.cloud.datastore.StructuredQuery.OrderBy;
 
 public class SutechanDatastore {
 
-	DatastoreOptions data = DatastoreOptions.newBuilder().setProjectId("crafty-ring-191614").build();
-	private final Datastore datastore = data.getService();
-//	private final Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+	private final Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
 	private final KeyFactory keyFactory = datastore.newKeyFactory().setKind("bots");
 
 	public Key addTask(String description) {

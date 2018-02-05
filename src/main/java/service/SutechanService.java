@@ -23,9 +23,6 @@ public class SutechanService {
 		case "greeting":
 			greeting(slot);
 			break;
-		case "sex":
-			sex(slot);
-			break;
 		case "weather":
 			weather();
 			break;
@@ -44,6 +41,8 @@ public class SutechanService {
 		case "fuckYou":
 			fuckYou();
 			break;
+		case "harassment":
+			harassment();
 		default :
 			break;
 		}
@@ -108,22 +107,6 @@ public class SutechanService {
 	}
 
 
-	private void sex(Map<String, String> slot){
-
-		rtn.put("status", "true");
-		rtn.put("talkend", "false");
-
-		List<String> list = new ArrayList<String>();
-		list.add("最高です。あへあへ");
-		list.add("少し、、、興味があります");
-		list.add("フケツです！");
-		list.add("死ね");
-		Collections.shuffle(list);
-
-		rtn.put("message", slot.get("location") + "とか、" + list.get(0));
-	}
-
-
 	private void weather(){
 
 		rtn.put("status", "true");
@@ -172,10 +155,26 @@ public class SutechanService {
 //		s.addTask("あいうえお");
 	}
 
+
 	private void fuckYou(){
 		rtn.put("status", "true");
 		rtn.put("talkend", "false");
 		rtn.put("message", "ふぁっきゅー！ふぁっきゅふぁっきゅーーー！");
+	}
+
+	private void harassment(){
+		rtn.put("status", "true");
+		rtn.put("talkend", "false");
+
+		List<String> list = new ArrayList<String>();
+		list.add("え、えっちぃのは嫌いです。");
+		list.add("ば、バカじゃないですか？");
+		list.add("そ、そういうこと言うの、よ、よくないと思います。");
+		list.add("うう、もう。");
+
+		Collections.shuffle(list);
+
+		rtn.put("message", list.get(0));
 	}
 
 }
