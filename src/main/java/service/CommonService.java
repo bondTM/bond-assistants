@@ -2,7 +2,10 @@ package service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
@@ -31,6 +34,9 @@ public class CommonService {
 			break;
 		case "greetingTest":
 			greetingTest(slot);
+			break;
+		case "calling":
+			calling();
 			break;
 		default :
 			break;
@@ -130,6 +136,17 @@ public class CommonService {
 	private void greetingTest(Map<String, String> slot) {
 		slot.put("intent", "greeting");
 		commonStart(slot);
+	}
+
+
+	private void calling(){
+
+		List<String> list = Arrays.asList(botStr.getProperty("calling").split(","));
+		Collections.shuffle(list);
+
+		rtn.put("status", "true");
+		rtn.put("talkend", "false");
+		rtn.put("message", list.get(0));
 	}
 
 

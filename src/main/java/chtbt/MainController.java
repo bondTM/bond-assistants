@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import daos.SutechanDatastore;
 import model.SebastienResponseModel;
 import service.GohoLoliService;
+import service.SebastienService;
 import service.SutechanService;
 import util.IOConverter;
 
@@ -81,7 +82,7 @@ public class MainController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public SebastienResponseModel man(JsonNode param) {
+    public SebastienResponseModel gohololi(JsonNode param) {
 
 		Map<String, String> args = new HashMap<String, String>();
 		SebastienResponseModel srm = new SebastienResponseModel();
@@ -100,6 +101,34 @@ public class MainController {
 		//セリフ編集＆出力のparamsを編集
 		GohoLoliService gs = new GohoLoliService();
 		srm.setParams(ioc.SebastienSetParams(gs.start(args)));
+
+		return srm;
+    }
+
+
+	@Path("/sebastien")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public SebastienResponseModel sebastien(JsonNode param) {
+
+		Map<String, String> args = new HashMap<String, String>();
+		SebastienResponseModel srm = new SebastienResponseModel();
+
+		//入力値を出力用Modelへ
+		IOConverter ioc = new IOConverter();
+		srm = ioc.SebastienInit(param);
+
+
+		//argsの中身をMapに格納
+		Iterator<Map.Entry<String, JsonNode>> argsWk = param.get("args").fields();
+		argsWk.forEachRemaining(arg ->{
+				args.put(arg.getKey(), arg.getValue().asText());
+		});
+
+		//セリフ編集＆出力のparamsを編集
+		SebastienService ss = new SebastienService();
+		srm.setParams(ioc.SebastienSetParams(ss.start(args)));
 
 		return srm;
     }
