@@ -42,6 +42,8 @@ public class SutechanService extends CommonService {
 			break;
 		case "harassment":
 			harassment();
+		case "kyasuodai":
+			kyasuodai();
 		default :
 			break;
 		}
@@ -72,12 +74,41 @@ public class SutechanService extends CommonService {
 	private void harassment(){
 		rtn.put("status", "true");
 		rtn.put("talkend", "false");
+		
 
 		List<String> list = new ArrayList<String>();
 		list.add("え、えっちぃのは嫌いです。");
 		list.add("ば、バカじゃないですか？");
 		list.add("そ、そういうこと言うの、よ、よくないと思います。");
 		list.add("うう、もう。");
+		list.add("ばかぁ！！！");
+
+		Collections.shuffle(list);
+
+		rtn.put("message", list.get(0));
+	}
+	
+	
+	private void kyasuodai(){
+		rtn.put("status", "true");
+		rtn.put("talkend", "false");
+		
+		//%dについて話してください。(テンプレ)
+		//今日したこと
+		//if日曜　　架空
+		//if土曜　　物語
+		//おたよりよもう
+		//私の一人称ってなくない？
+		//そろそろ喉が寂しいんじゃない？
+		//かんぱいにとぶ
+		//if23:20そろそろいつも終わってる時間だよ
+
+		List<String> list = new ArrayList<String>();
+		list.add("え、えっちぃのは嫌いです。");
+		list.add("ば、バカじゃないですか？");
+		list.add("そ、そういうこと言うの、よ、よくないと思います。");
+		list.add("うう、もう。");
+		list.add("ばかぁ！！！");
 
 		Collections.shuffle(list);
 
