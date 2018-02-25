@@ -42,6 +42,8 @@ public class SutechanService extends CommonService {
 			break;
 		case "harassment":
 			harassment();
+		case "hellShake":
+			hellShake();
 		default :
 			break;
 		}
@@ -78,6 +80,19 @@ public class SutechanService extends CommonService {
 		list.add("ば、バカじゃないですか？");
 		list.add("そ、そういうこと言うの、よ、よくないと思います。");
 		list.add("うう、もう。");
+
+		Collections.shuffle(list);
+
+		rtn.put("message", list.get(0));
+	}
+
+	private void hellShake(){
+		rtn.put("status", "true");
+		rtn.put("talkend", "false");
+
+		List<String> list = new ArrayList<String>();
+		list.add("ヘールシェイク！ヘールシェイク！ヘールシェイク！");
+		list.add("すいません、ヘルシェイク矢野のこと考えてました。");
 
 		Collections.shuffle(list);
 
